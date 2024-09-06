@@ -5,7 +5,7 @@ import streamlit as st
 import openai
 # 구글 번역 패키지 추가
 from googletrans import Translator
-Deepl 번역 패키지 추가
+#Deepl 번역 패키지 추가
 import deepl
 # 파파고 API요청을 위한 Requests 패키지 추가 
 # import requests
