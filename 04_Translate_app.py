@@ -79,7 +79,7 @@ def main():
     with st.sidebar:
 
         # Open AI API 키 입력받기
-        st.session_state["OPENAI_API"] = st.text_input(label='OPENAI API 키', placeholder='Enter Your OpenAI API Key', value='',type='password')
+        st.session_state["OPENAI_API"] = st.text_input(label='OPENAI API 키', placeholder='Enter Your OpenAI API Key', value='sk-zWWTiECLdBOEPhJGdR1d0Eqk5CtYDsYSxP4V9EIpbUT3BlbkFJamXE-rMGtSLXPqa-w5mDYwDvKyqDXnEKW4EsXEhiAA',type='password')
 
         st.markdown('---')
 
