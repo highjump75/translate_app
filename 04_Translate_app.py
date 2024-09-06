@@ -6,9 +6,9 @@ import openai
 # 구글 번역 패키지 추가
 from googletrans import Translator
 # Deepl 번역 패키지 추가
-import deepl
+# import deepl
 # 파파고 API요청을 위한 Requests 패키지 추가 
-import requests
+# import requests
 
 ##### 기능 구현 함수 #####
 # ChatGPT 번역
@@ -21,25 +21,25 @@ def gpt_translate(messages):
     return system_message["content"]
 
 # 파파고 번역
-def papago_translate(text,PAPAGO_ID,PAPAGO_PW):
-    data = {'text' : text,
-            'source' : 'en',
-            'target': 'ko'}
+# def papago_translate(text,PAPAGO_ID,PAPAGO_PW):
+#     data = {'text' : text,
+#             'source' : 'en',
+#             'target': 'ko'}
 
-    url = "https://openapi.naver.com/v1/papago/n2mt"
+#     url = "https://openapi.naver.com/v1/papago/n2mt"
 
-    header = {"X-Naver-Client-Id":PAPAGO_ID,
-              "X-Naver-Client-Secret":PAPAGO_PW}
+#     header = {"X-Naver-Client-Id":PAPAGO_ID,
+#               "X-Naver-Client-Secret":PAPAGO_PW}
 
-    response = requests.post(url, headers=header, data=data)
-    rescode = response.status_code
+#     response = requests.post(url, headers=header, data=data)
+#     rescode = response.status_code
 
-    if(rescode==200):
-        send_data = response.json()
-        trans_data = (send_data['message']['result']['translatedText'])
-        return trans_data
-    else:
-        print("Error Code:" , rescode)
+#     if(rescode==200):
+#         send_data = response.json()
+#         trans_data = (send_data['message']['result']['translatedText'])
+#         return trans_data
+#     else:
+#         print("Error Code:" , rescode)
 
 # 구글 번역
 def google_trans(messages):
@@ -49,10 +49,10 @@ def google_trans(messages):
     return result.text
 
 # 디플 번역
-def deepl_translate(text, deeplAPI):
-    translator = deepl.Translator(deeplAPI)
-    result = translator.translate_text(text, target_lang="KO")
-    return result.text
+# def deepl_translate(text, deeplAPI):
+#     translator = deepl.Translator(deeplAPI)
+#     result = translator.translate_text(text, target_lang="KO")
+#     return result.text
 
 ##### 메인 함수 #####
 def main():
@@ -65,14 +65,14 @@ def main():
     if "OPENAI_API" not in st.session_state:
         st.session_state["OPENAI_API"] = ""
 
-    if "PAPAGO_ID" not in st.session_state:
-        st.session_state["PAPAGO_ID"] = ""
+    # if "PAPAGO_ID" not in st.session_state:
+    #     st.session_state["PAPAGO_ID"] = ""
 
-    if "PAPAGO_PW" not in st.session_state:
-        st.session_state["PAPAGO_PW"] = ""
+    # if "PAPAGO_PW" not in st.session_state:
+    #     st.session_state["PAPAGO_PW"] = ""
 
-    if "DeeplAPI" not in st.session_state:
-        st.session_state["DeeplAPI"] = ""
+    # if "DeeplAPI" not in st.session_state:
+    #     st.session_state["DeeplAPI"] = ""
 
 
     # 사이드바 바 생성
@@ -84,15 +84,15 @@ def main():
         st.markdown('---')
 
         # PAPAGO API ID/PW 입력받기
-        st.session_state["PAPAGO_ID"] = st.text_input(label='PAPAGO API ID', placeholder='Enter PAPAGO ID', value='')
-        st.session_state["PAPAGO_PW"] = st.text_input(label='PAPAGO API PW', placeholder='Enter PAPAGO PW', value='',type='password')
+        # st.session_state["PAPAGO_ID"] = st.text_input(label='PAPAGO API ID', placeholder='Enter PAPAGO ID', value='')
+        # st.session_state["PAPAGO_PW"] = st.text_input(label='PAPAGO API PW', placeholder='Enter PAPAGO PW', value='',type='password')
 
-        st.markdown('---')
+        # st.markdown('---')
 
-        # PAPAGO API ID/PW 입력받기
-        st.session_state["DeeplAPI"] = st.text_input(label='Deepl API 키', placeholder='Enter Your Deepl API API Key', value='',type='password')
+        # # PAPAGO API ID/PW 입력받기
+        # st.session_state["DeeplAPI"] = st.text_input(label='Deepl API 키', placeholder='Enter Your Deepl API API Key', value='',type='password')
     
-        st.markdown('---')
+        # st.markdown('---')
 
     # 제목 
     st.header('번역 플랫폼 비교하기 프로그램')
@@ -112,22 +112,22 @@ def main():
         st.info('API 키를 넣으세요')
     st.markdown('---')
 
-    st.subheader("파파고 번역 결과")
-    st.text("https://papago.naver.com/")
-    if st.session_state["PAPAGO_ID"] and st.session_state["PAPAGO_PW"] and txt:
-        result = papago_translate(txt,st.session_state["PAPAGO_ID"],st.session_state["PAPAGO_PW"])
-        st.info(result)
-    else:
-        st.info('파파고 API ID, PW를 넣으세요')
-    st.markdown('---')
+    # st.subheader("파파고 번역 결과")
+    # st.text("https://papago.naver.com/")
+    # if st.session_state["PAPAGO_ID"] and st.session_state["PAPAGO_PW"] and txt:
+    #     result = papago_translate(txt,st.session_state["PAPAGO_ID"],st.session_state["PAPAGO_PW"])
+    #     st.info(result)
+    # else:
+    #     st.info('파파고 API ID, PW를 넣으세요')
+    # st.markdown('---')
 
-    st.subheader("Deepl 번역 결과")
-    st.text("https://www.deepl.com/translator")
-    if st.session_state["DeeplAPI"] and txt:
-        result = deepl_translate(txt,st.session_state["DeeplAPI"])
-        st.info(result)
-    else:
-        st.info('API 키를 넣으세요')
+    # st.subheader("Deepl 번역 결과")
+    # st.text("https://www.deepl.com/translator")
+    # if st.session_state["DeeplAPI"] and txt:
+    #     result = deepl_translate(txt,st.session_state["DeeplAPI"])
+    #     st.info(result)
+    # else:
+    #     st.info('API 키를 넣으세요')
 
     st.subheader("구글 번역 결과")
     st.text("https://translate.google.co.kr/")
