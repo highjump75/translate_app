@@ -5,8 +5,8 @@ import streamlit as st
 import openai
 # 구글 번역 패키지 추가
 from googletrans import Translator
-# Deepl 번역 패키지 추가
-# import deepl
+Deepl 번역 패키지 추가
+import deepl
 # 파파고 API요청을 위한 Requests 패키지 추가 
 # import requests
 
@@ -49,10 +49,10 @@ def google_trans(messages):
     return result.text
 
 # 디플 번역
-# def deepl_translate(text, deeplAPI):
-#     translator = deepl.Translator(deeplAPI)
-#     result = translator.translate_text(text, target_lang="KO")
-#     return result.text
+def deepl_translate(text, deeplAPI=""):
+    translator = deepl.Translator(deeplAPI)
+    result = translator.translate_text(text, target_lang="KO")
+    return result.text
 
 ##### 메인 함수 #####
 def main():
@@ -71,8 +71,8 @@ def main():
     # if "PAPAGO_PW" not in st.session_state:
     #     st.session_state["PAPAGO_PW"] = ""
 
-    # if "DeeplAPI" not in st.session_state:
-    #     st.session_state["DeeplAPI"] = ""
+    if "DeeplAPI" not in st.session_state:
+        st.session_state["DeeplAPI"] = ""
 
 
     # 사이드바 바 생성
@@ -89,8 +89,8 @@ def main():
 
         # st.markdown('---')
 
-        # # PAPAGO API ID/PW 입력받기
-        # st.session_state["DeeplAPI"] = st.text_input(label='Deepl API 키', placeholder='Enter Your Deepl API API Key', value='',type='password')
+        # #Deepl API 입력받기
+        st.session_state["DeeplAPI"] = st.text_input(label='Deepl API 키', placeholder='Enter Your Deepl API API Key', value='2b57234b-8daf-4de0-be30-3a6083ae2aa4:fx',type='password')
     
         # st.markdown('---')
 
@@ -121,13 +121,13 @@ def main():
     #     st.info('파파고 API ID, PW를 넣으세요')
     # st.markdown('---')
 
-    # st.subheader("Deepl 번역 결과")
-    # st.text("https://www.deepl.com/translator")
-    # if st.session_state["DeeplAPI"] and txt:
-    #     result = deepl_translate(txt,st.session_state["DeeplAPI"])
-    #     st.info(result)
-    # else:
-    #     st.info('API 키를 넣으세요')
+    st.subheader("Deepl 번역 결과")
+    st.text("https://www.deepl.com/translator")
+    if st.session_state["DeeplAPI"] and txt:
+        result = deepl_translate(txt,st.session_state["DeeplAPI"])
+        st.info(result)
+    else:
+        st.info('API 키를 넣으세요')
 
     st.subheader("구글 번역 결과")
     st.text("https://translate.google.co.kr/")
